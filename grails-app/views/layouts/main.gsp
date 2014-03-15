@@ -16,6 +16,8 @@
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
 		<g:layoutHead/>
 		<g:javascript library="application"/>		
+		<g:javascript library="jquery"/>
+        <g:javascript src="knockout-2.3.0.debug.js"/>
 		<r:layoutResources />
 	</head>
 	<body>

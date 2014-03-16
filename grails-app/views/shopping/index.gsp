@@ -17,12 +17,18 @@
 
 <p><span data-bind="text: firstName"></span>'s Shopping Cart</p>
 
+<button data-bind="click: checkout">Checkout</button>
+
 <script type="text/javascript">
-    var personViewModel = {
-        firstName: ko.observable("Manvendra"),
-        lastName: ko.observable("SK")
-    };
-    ko.applyBindings(personViewModel);
+    function PersonViewModel() {
+        this.firstName = ko.observable("Manvendra");
+        this.lastName = ko.observable("SK");
+
+        this.checkout = function() {
+            alert("Trying to check out!");
+        }
+    }
+    ko.applyBindings(new PersonViewModel());
 </script>
 </body>
 </html>

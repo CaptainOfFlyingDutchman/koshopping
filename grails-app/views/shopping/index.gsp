@@ -64,7 +64,9 @@
         };
 
         this.removeProduct = function (product) {
-            self.shoppingCart.remove(product);
+            self.shoppingCart.destroy(product);
+            console.info(self.shoppingCart().length);
+            console.info(self.shoppingCart());
         };
 
         this.checkout = function () {

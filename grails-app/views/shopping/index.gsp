@@ -32,15 +32,26 @@
     <tr>
         <td data-bind="text: name"></td>
         <td data-bind="text: price"></td>
+        <td><ul data-bind="foreach: tags">
+            <li data-bind="text: $data">
+                %{--<span data-bind="text: $data"></span>
+                <span data-bind="text: $index"></span>
+                <span data-bind="text: $parent.name"></span>
+                Remove binding from li to show span bindings working--}%
+            </li>
+        </ul></td>
         <td><button data-bind="click: $root.removeProduct">Remove</button></td>
     </tr>
     </tbody>
 </table>
 
 <script type="text/javascript">
-    function Product(name, price) {
+    function Product(name, price, tags) {
         this.name = ko.observable(name);
         this.price = ko.observable(price);
+
+        tags = typeof(tags) !== 'undefined' ? tags : [];
+        this.tags = ko.observableArray(tags);
     }
 
     function PersonViewModel() {
@@ -56,7 +67,7 @@
         this.shoppingCart = ko.observableArray([
             new Product("Beer", 10.99),
             new Product("Brats", 7.99),
-            new Product("Buns", 1.49)
+            new Product("Buns", 1.49, ["Baked goods", "Hot dogs"])
         ]);
 
         this.addProduct = function () {

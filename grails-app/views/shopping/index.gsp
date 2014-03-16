@@ -17,6 +17,11 @@
 
 <p><span data-bind="text: fullName"></span>'s Shopping Cart</p>
 
+<p data-bind="with: featuredProduct">
+    Do you need <strong data-bind="text: name"></strong>? <br/>
+    Get one now for only <strong data-bind="text: price"></strong>
+</p>
+
 <button data-bind="click: checkout">Checkout</button>
 
 <button data-bind="click: addProduct">Add Bear</button>
@@ -91,7 +96,10 @@
 
         this.checkout = function () {
             alert("Trying to check out!");
-        }
+        };
+
+        var featured = new Product("Acme BBQ Sauce", 3.99);
+        this.featuredProduct = ko.observable(featured);
     }
     var personVM = new PersonViewModel();
     ko.applyBindings(personVM);

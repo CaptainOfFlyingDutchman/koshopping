@@ -15,7 +15,7 @@
 <body>
 <h1>Hello, Knockout.js</h1>
 
-<p><span data-bind="text: firstName"></span>'s Shopping Cart</p>
+<p><span data-bind="text: fullName"></span>'s Shopping Cart</p>
 
 <button data-bind="click: checkout">Checkout</button>
 
@@ -23,6 +23,10 @@
     function PersonViewModel() {
         this.firstName = ko.observable("Manvendra");
         this.lastName = ko.observable("SK");
+
+        this.fullName = ko.computed(function() {
+            return this.firstName() + " " + this.lastName();
+        }, this);
 
         this.checkout = function() {
             alert("Trying to check out!");

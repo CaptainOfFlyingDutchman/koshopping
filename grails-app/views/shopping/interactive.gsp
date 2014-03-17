@@ -41,13 +41,13 @@
     <p>Annoy me with special offers: <input type="checkbox" data-bind="checked: annoyMe" /> </p>
     <div data-bind="visible: annoyMe">
         <div>
-            <input type="checkbox" value="morning" data-bind="checked: annoyTimes" /> In the morning
+            <input type="radio" name="annoyGroup" value="morning" data-bind="checked: annoyTimes" /> In the morning
         </div>
         <div>
-            <input type="checkbox" value="afternoon" data-bind="checked: annoyTimes" /> In the afternoon
+            <input type="radio" name="annoyGroup" value="afternoon" data-bind="checked: annoyTimes" /> In the afternoon
         </div>
         <div>
-            <input type="checkbox" value="evening" data-bind="checked: annoyTimes" /> In the evening
+            <input type="radio" name="annoyGroup" value="evening" data-bind="checked: annoyTimes" /> In the evening
         </div>
     </div>
 
@@ -95,7 +95,7 @@
         this.secondaryPhone = ko.observable("");
 
         this.annoyMe = ko.observable(true);
-        this.annoyTimes = ko.observableArray(["morning", "evening"]);
+        this.annoyTimes = ko.observable("afternoon");
     }
 
     var personVM = new PersonViewModel();

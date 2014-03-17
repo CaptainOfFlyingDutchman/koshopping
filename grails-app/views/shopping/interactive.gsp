@@ -16,12 +16,19 @@
 <h1>Interactive Bindings</h1>
 
 <form action="#" method="post">
-    <p data-bind="event: {mouseover: showDetails, mouseout: hideDetails}">
+    <p data-bind="event: {mouseover: function(data, event) {
+            showDetails(data, event, 'firstName');
+        }, mouseout: hideDetails}">
         First name: <input data-bind="value: firstName"/>
-        <span data-bind="visible: details">Your given name</span>
+        <span data-bind="visible: details() == 'firstName'">Your given name</span>
     </p>
 
-    <p>Last name: <input data-bind="value: lastName"/></p>
+    <p data-bind="event: {mouseover: function(data, event) {
+            showDetails(data, event, 'lastName');
+        }, mouseout: hideDetails}">
+        Last name: <input data-bind="value: lastName"/>
+        <span data-bind="visible: details() == 'lastName'">Your surname</span>
+    </p>
 
     <p><button data-bind="click: saveUserData">Submit</button></p>
 
@@ -53,14 +60,14 @@
             this.firstName("Gaurav");
         };
 
-        this.details = ko.observable(false);
+        this.details = ko.observable("");
 
-        this.showDetails = function (target, event) {
-            this.details(true);
+        this.showDetails = function (target, event, details) {
+            this.details(details);
         };
 
         this.hideDetails = function (target, event) {
-            this.details(false);
+            this.details("");
         };
     }
 

@@ -40,15 +40,7 @@
 
     <p>Annoy me with special offers: <input type="checkbox" data-bind="checked: annoyMe" /> </p>
     <div data-bind="visible: annoyMe">
-        <div>
-            <input type="radio" name="annoyGroup" value="morning" data-bind="checked: annoyTimes" /> In the morning
-        </div>
-        <div>
-            <input type="radio" name="annoyGroup" value="afternoon" data-bind="checked: annoyTimes" /> In the afternoon
-        </div>
-        <div>
-            <input type="radio" name="annoyGroup" value="evening" data-bind="checked: annoyTimes" /> In the evening
-        </div>
+        <select data-bind="options: annoyTimes, value: selectedTime"></select>
     </div>
 
     <p><button data-bind="click: saveUserData">Submit</button></p>
@@ -95,7 +87,12 @@
         this.secondaryPhone = ko.observable("");
 
         this.annoyMe = ko.observable(true);
-        this.annoyTimes = ko.observable("afternoon");
+        this.annoyTimes = ko.observableArray([
+            "In the morning",
+            "In the afternoon",
+            "In the evening"
+        ]);
+        this.selectedTime = ko.observable("In the afternoon");
     }
 
     var personVM = new PersonViewModel();

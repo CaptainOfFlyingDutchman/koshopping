@@ -30,6 +30,14 @@
         <span data-bind="visible: details() == 'lastName'">Your surname</span>
     </p>
 
+    <p>
+        Primary phone: <input data-bind="value: primaryPhone" />
+    </p>
+
+    <p>
+        Secondary phone: <input data-bind="value: secondaryPhone, enable: primaryPhone" />
+    </p>
+
     <p><button data-bind="click: saveUserData">Submit</button></p>
 
     <p>
@@ -69,6 +77,9 @@
         this.hideDetails = function (target, event) {
             this.details("");
         };
+
+        this.primaryPhone = ko.observable("");
+        this.secondaryPhone = ko.observable("");
     }
 
     var personVM = new PersonViewModel();

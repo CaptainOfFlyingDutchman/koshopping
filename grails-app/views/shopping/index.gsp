@@ -46,7 +46,8 @@
             </li>
         </ul></td>
         <td data-bind="if: discount() > 0" style="color: red">
-            You saved <span data-bind="text: formattedDiscount"></span>!!!
+            You saved <span data-bind="text: formattedDiscount,
+            style: {fontWeight: discount() > .15 ? 'bold' : 'normal'}"></span>!!!
         </td>
         <td><button data-bind="click: $root.removeProduct">Remove</button></td>
     </tr>
@@ -80,7 +81,7 @@
 
         this.shoppingCart = ko.observableArray([
             new Product("Beer", 10.99, null, .20),
-            new Product("Brats", 7.99),
+            new Product("Brats", 7.99, null, .10),
             new Product("Buns", 1.49, ["Baked goods", "Hot dogs"])
         ]);
 

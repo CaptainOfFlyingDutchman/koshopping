@@ -5,4 +5,6 @@ class ShoppingController {
     def index() { }
 
     def bindings() {}
+
+    def interactive() {}
 }

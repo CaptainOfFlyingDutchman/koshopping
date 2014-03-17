@@ -16,7 +16,16 @@
 <h1>Interactive Bindings</h1>
 
 <form action="#" method="post">
+    <p>First name: <input data-bind="value: firstName"/></p>
+
+    <p>Last name: <input data-bind="value: lastName"/></p>
+
     <p><button data-bind="click: saveUserData">Submit</button></p>
+
+    <p>
+        <button data-bind="click: displayName">Display Name</button>
+        <button data-bind="click: setName">Set Name</button>
+    </p>
 </form>
 
 <script type="text/javascript">
@@ -26,11 +35,19 @@
         this.firstName = ko.observable("Manvendra");
         this.lastName = ko.observable("SK");
 
-        this.saveUserData =  function(model, event) {
+        this.saveUserData = function (model, event) {
             alert(model.firstName() + " is trying to checkout!");
             if (event.ctrlKey) {
                 alert("He was holding down the Control key for some reason.");
             }
+        };
+
+        this.displayName = function () {
+            alert(this.firstName());
+        };
+
+        this.setName = function () {
+            this.firstName("Gaurav");
         };
     }
 

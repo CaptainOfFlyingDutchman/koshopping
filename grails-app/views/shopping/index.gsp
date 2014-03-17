@@ -47,7 +47,7 @@
         </ul></td>
         <td data-bind="if: discount() > 0" style="color: red">
             You saved <span data-bind="text: formattedDiscount,
-            style: {fontWeight: discount() > .15 ? 'bold' : 'normal'}"></span>!!!
+            css: {supersaver: discount() > .15}"></span>!!!
         </td>
         <td><button data-bind="click: $root.removeProduct">Remove</button></td>
     </tr>

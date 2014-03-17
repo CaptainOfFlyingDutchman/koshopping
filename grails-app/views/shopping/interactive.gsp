@@ -38,6 +38,8 @@
         Secondary phone: <input data-bind="value: secondaryPhone, enable: primaryPhone" />
     </p>
 
+    <p>Annoy me with special offers: <input type="checkbox" data-bind="checked: annoyMe" /> </p>
+
     <p><button data-bind="click: saveUserData">Submit</button></p>
 
     <p>
@@ -80,6 +82,8 @@
 
         this.primaryPhone = ko.observable("");
         this.secondaryPhone = ko.observable("");
+
+        this.annoyMe = ko.observable(true);
     }
 
     var personVM = new PersonViewModel();

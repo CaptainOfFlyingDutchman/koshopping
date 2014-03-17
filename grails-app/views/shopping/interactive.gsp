@@ -43,6 +43,10 @@
         <select data-bind="options: annoyTimes, value: selectedTime"></select>
     </div>
 
+    <div>
+        <select data-bind="options: products, optionsText: 'name', value: favoriteProduct"></select>
+    </div>
+
     <p><button data-bind="click: saveUserData">Submit</button></p>
 
     <p>
@@ -93,6 +97,13 @@
             "In the evening"
         ]);
         this.selectedTime = ko.observable("In the afternoon");
+
+        this.products = ko.observableArray([
+            {name: "Bear", price: 10.99},
+            {name: "Brats", price: 7.99},
+            {name: "Buns", price: 2.99}
+        ]);
+        this.favoriteProduct = ko.observable();
     }
 
     var personVM = new PersonViewModel();

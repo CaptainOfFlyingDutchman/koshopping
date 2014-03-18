@@ -1,8 +1,21 @@
 dataSource {
     pooled = true
-    driverClassName = "org.h2.Driver"
-    username = "sa"
-    password = ""
+    driverClassName = "com.mysql.jdbc.Driver"
+    username = "root"
+    password = "mysql"
+    dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
+    configClass = HibernateFilterDomainConfiguration
+    properties {
+        minIdle = 1
+        maxActive = -1
+        minEvictableIdleTimeMillis = 1800000
+        timeBetweenEvictionRunsMillis = 1800000
+        numTestsPerEvictionRun = 3
+        testOnBorrow = true
+        testWhileIdle = true
+        testOnReturn = true
+        validationQuery = "SELECT 1"
+    }
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -16,7 +29,7 @@ environments {
     development {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            url = "jdbc:mysql://localhost:3306/koshopping?autoReconnect=true&zeroDateTimeBehavior=convertToNull&useLegacyDatetimeCode=false&serverTimezone=GMT"
         }
     }
     test {

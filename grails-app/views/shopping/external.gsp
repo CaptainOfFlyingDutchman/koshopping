@@ -21,17 +21,20 @@
     <p>Last name: <input data-bind="value: lastName"/></p>
 
     <div>
-        Your favorite hobby:
+        Your favorite food::
         <select data-bind="options: activities, value: favoriteHobby"></select>
     </div>
 
-    <p><button data-bind="click: loadUserData">Load Data</button></p>
+    <p><button data-bind="click: loadUserData">Load Data</button>
+
+        <button data-bind="click: saveUserData">Save Data</button></p>
 </form>
 
 <script type="text/javascript">
     function PersonViewModel() {
         var self = this;
 
+        self.id = ko.observable("");
         self.firstName = ko.observable("");
         self.lastName = ko.observable("");
         self.activities = ko.observableArray([]);
@@ -40,10 +43,21 @@
         self.loadUserData = function () {
             $.getJSON("${g.createLink(action: "loadData", absolute: true)}", function (data) {
                 console.info(data);
+                self.id(data.id);
                 self.firstName(data.firstName);
                 self.lastName(data.lastName);
                 self.activities(data.activities);
                 self.favoriteHobby(data.favoriteHobby);
+            });
+        };
+
+        self.saveUserData = function () {
+            var dataToSend = ko.toJSON(self);
+            console.info(dataToSend);
+            $.post("${g.createLink(action: "saveData", absolute: true)}", {dts: dataToSend}, function (data) {
+                data == "SAVED" ?
+                        alert("Your data has been posted to the server!") :
+                        alert("Error occurred during save.");
             });
         };
     }

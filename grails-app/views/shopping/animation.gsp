@@ -35,6 +35,17 @@
     </table>
 
     <button data-bind="click: addProduct">Add Beer</button>
+
+    <div>
+        <p>
+            <input type="checkbox" data-bind="checked: hasInstructions"/>
+            Requires special handling instructions
+        </p>
+
+        <div>
+            <textarea data-bind="visibleFade: hasInstructions, value: instructions"></textarea>
+        </div>
+    </div>
 </form>
 
 <script type="text/javascript">
@@ -77,6 +88,17 @@
             }
         };
     }
+
+    ko.bindingHandlers.visibleFade = {
+        init: function (element, valueAccessor) {
+            var value = valueAccessor();
+            $(element).toggle(value());
+        },
+        update: function (element, valueAccessor) {
+            var value = valueAccessor();
+            value() ? $(element).fadeIn() : $(element).fadeOut();
+        }
+    };
 
     var shoppingVM = new ShoppingCart();
     ko.applyBindings(shoppingVM);

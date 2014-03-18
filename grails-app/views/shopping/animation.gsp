@@ -25,7 +25,7 @@
             <th></th>
         </tr>
         </thead>
-        <tbody data-bind="foreach: items">
+        <tbody data-bind="foreach: {data: items, beforeRemove: hideProduct, afterAdd: showProduct}">
         <tr>
             <td data-bind="text: name"></td>
             <td data-bind="text: price"></td>
@@ -61,6 +61,20 @@
 
         self.removeProduct = function (product) {
             self.items.destroy(product);
+        };
+
+        self.showProduct = function (element) {
+            if (element.nodeType === 1) {
+                $(element).hide().fadeIn();
+            }
+        };
+
+        self.hideProduct = function (element) {
+            if (element.nodeType === 1) {
+                $(element).fadeOut(function () {
+                    $(element).remove();
+                });
+            }
         };
     }
 

@@ -23,6 +23,17 @@ class ShoppingController {
         render(person as JSON)
     }
 
+    def loadNewData() {
+        def person = new Person(
+                firstName: "Gaurav",
+                lastName: "Singh",
+                activities: ["Phone", "Books", "Brain Storming"],
+                favoriteHobby: "Books"
+        ).save(flush: true, failOnError: true)
+
+        render(person as JSON)
+    }
+
     def saveData() {
         def personJson = JSON.parse(params.dts)
         def person = Person.get(personJson.id)

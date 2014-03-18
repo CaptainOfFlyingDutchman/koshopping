@@ -19,6 +19,7 @@
 		<g:javascript library="application"/>		
 		<g:javascript library="jquery"/>
         <g:javascript src="knockout-2.3.0.debug.js"/>
+        <g:javascript src="knockout.mapping-2.4.1.debug.js"/>
 		<r:layoutResources />
 	</head>
 	<body>

@@ -31,28 +31,18 @@
 </form>
 
 <script type="text/javascript">
-    function PersonViewModel() {
-        var self = this;
+    var viewModel;
+    $.getJSON("${createLink(action: "loadData", absolute: true)}", function (data) {
+        viewModel = ko.mapping.fromJS(data);
 
-        self.id = ko.observable("");
-        self.firstName = ko.observable("");
-        self.lastName = ko.observable("");
-        self.activities = ko.observableArray([]);
-        self.favoriteHobby = ko.observable("");
-
-        self.loadUserData = function () {
-            $.getJSON("${g.createLink(action: "loadData", absolute: true)}", function (data) {
-                console.info(data);
-                self.id(data.id);
-                self.firstName(data.firstName);
-                self.lastName(data.lastName);
-                self.activities(data.activities);
-                self.favoriteHobby(data.favoriteHobby);
+        viewModel.loadUserData = function () {
+            $.getJSON("${createLink(action: "loadNewData", absolute: true)}", function (data) {
+                ko.mapping.fromJS(data, viewModel);
             });
         };
 
-        self.saveUserData = function () {
-            var dataToSend = ko.toJSON(self);
+        viewModel.saveUserData = function () {
+            var dataToSend = ko.toJSON(viewModel);
             console.info(dataToSend);
             $.post("${g.createLink(action: "saveData", absolute: true)}", {dts: dataToSend}, function (data) {
                 data == "SAVED" ?
@@ -60,10 +50,9 @@
                         alert("Error occurred during save.");
             });
         };
-    }
 
-    var personVM = new PersonViewModel();
-    ko.applyBindings(personVM);
+        ko.applyBindings(viewModel);
+    });
 </script>
 </body>
 </html>

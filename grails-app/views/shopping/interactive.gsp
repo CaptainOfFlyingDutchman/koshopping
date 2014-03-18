@@ -31,7 +31,7 @@
     </p>
 
     <p>
-        Primary phone: <input data-bind="value: primaryPhone" />
+        Primary phone: <input data-bind="value: primaryPhone, hasfocus: phoneHasFocus" />
     </p>
 
     <p>
@@ -105,6 +105,8 @@
             {name: "Buns", price: 2.99}
         ]);
         this.favoriteProducts = ko.observable([brats]);
+
+        this.phoneHasFocus = ko.observable(true);
     }
 
     var personVM = new PersonViewModel();

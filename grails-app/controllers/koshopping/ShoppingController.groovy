@@ -41,4 +41,6 @@ class ShoppingController {
         boolean isSaved = person.save(flush: true, failOnError: true)
         isSaved ? render("SAVED") : render("ERROR")
     }
+
+    def animation() {}
 }

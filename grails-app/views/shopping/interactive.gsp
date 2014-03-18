@@ -44,7 +44,7 @@
     </div>
 
     <div>
-        <select data-bind="options: products, optionsText: 'name', value: favoriteProduct"></select>
+        <select size="3" multiple="multiple" data-bind="options: products, optionsText: 'name', selectedOptions: favoriteProducts"></select>
     </div>
 
     <p><button data-bind="click: saveUserData">Submit</button></p>
@@ -98,12 +98,13 @@
         ]);
         this.selectedTime = ko.observable("In the afternoon");
 
+        var brats = {name: "Brats", price: 7.99};
         this.products = ko.observableArray([
             {name: "Bear", price: 10.99},
-            {name: "Brats", price: 7.99},
+            brats,
             {name: "Buns", price: 2.99}
         ]);
-        this.favoriteProduct = ko.observable();
+        this.favoriteProducts = ko.observable([brats]);
     }
 
     var personVM = new PersonViewModel();
